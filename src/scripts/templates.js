@@ -69,9 +69,9 @@ export function generateStoryItemTemplate({
             <div class="story-item__createdat">
               <i class="fas fa-calendar-alt"></i> ${showFormattedDate(createdAt, 'id-ID')}
             </div>
-            <div class="story-item__location">
-              <i class="fas fa-map"></i> ${Object.values(location)}
-            </div>
+<div class="story-item__location">
+  <i class="fas fa-map"></i> ${location.lat}, ${location.lon}
+</div>
           </div>
         </div>
         <div id="story-description" class="story-item__description">

@@ -1,6 +1,6 @@
 import NewPresenter from './new-presenter';
 import { convertBase64ToBlob } from '../../utils';
-import * as CityCareAPI from '../../data/api';
+import * as CeritaKuyAPI from '../../data/api';
 import { generateLoaderAbsoluteTemplate } from '../../templates';
 import Camera from '../../utils/camera';
 
@@ -95,7 +95,7 @@ export default class NewPage {
             </div>
             <div class="form-buttons">
               <span id="submit-button-container">
-                <button class="btn" type="submit">Buat Laporan</button>
+                <button class="btn" type="submit">Buat Cerita</button>
               </span>
               <a class="btn btn-outline" href="#/">Batal</a>
             </div>
@@ -108,7 +108,7 @@ export default class NewPage {
   async afterRender() {
     this.#presenter = new NewPresenter({
       view: this,
-      model: CityCareAPI,
+      model: CeritaKuyAPI,
     });
     this.#takenDocumentations = [];
 
@@ -273,14 +273,14 @@ export default class NewPage {
   showSubmitLoadingButton() {
     document.getElementById('submit-button-container').innerHTML = `
       <button class="btn" type="submit" disabled>
-        <i class="fas fa-spinner loader-button"></i> Buat Laporan
+        <i class="fas fa-spinner loader-button"></i> Buat Cerita
       </button>
     `;
   }
 
   hideSubmitLoadingButton() {
     document.getElementById('submit-button-container').innerHTML = `
-      <button class="btn" type="submit">Buat Laporan</button>
+      <button class="btn" type="submit">Buat Cerita</button>
     `;
   }
 }

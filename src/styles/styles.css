@@ -422,13 +422,16 @@ header {
 /* HOME PAGE */
 .reports-list__map__container,
 .reports-list__map {
-  height: 100%; /* Menggunakan 100% agar mengisi kontainer */
-  width: 100%; /* Pastikan lebar peta mengisi kontainer */
-  position: relative; /* Pastikan peta tidak tumpang tindih dengan elemen lain */
+  height: 400px;
 }
 
 .reports-list__container {
   min-height: 400px;
+}
+
+.reports-list__map__container,
+.reports-list__container {
+  position: relative;
 }
 
 .reports-list__map__container {

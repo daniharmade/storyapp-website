@@ -83,9 +83,8 @@ export default class App {
   
     const page = route();
   
-    // ✅ CEK JIKA PAGE NULL (misalnya middleware redirect)
     if (!page) {
-      return; // Jangan render apa-apa
+      return;
     }
   
     const transition = transitionHelper({
