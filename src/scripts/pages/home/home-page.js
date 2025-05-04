@@ -13,7 +13,7 @@ export default class HomePage {
   async render() {
     return `
       <section class="container">
-        <h1 class="section-title">Daftar Story</h1>
+        <h1 class="section-title">Daftar Cerita</h1>
 
         <div class="reports-list__container">
           <div id="reports-list"></div>

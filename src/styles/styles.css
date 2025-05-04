@@ -512,7 +512,7 @@ header {
 .new-report__header {
   padding-block: 70px;
   background-color: #d9770626;
-  background-image: url('../public/images/orange-background.png');
+  background-image: url('../public/images/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;

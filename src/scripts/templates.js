@@ -14,7 +14,7 @@ export function generateLoaderAbsoluteTemplate() {
 
 export function generateMainNavigationListTemplate() {
   return `
-    <li><a id="story-list-button" class="story-list-button" href="#/">Daftar Story</a></li>
+    <li><a id="story-list-button" class="story-list-button" href="#/">Daftar Cerita</a></li>
   `;
 }
 
