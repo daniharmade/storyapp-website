@@ -6,12 +6,12 @@
 }
 
 :root {
-  --primary-color: #14b8a6;           /* Teal 500 */
+  --primary-color: #14b8a6;        
   --primary-text-color: #ffffff;
-  --primary-hover-color: #0d9488;     /* Teal 600 */
+  --primary-hover-color: #0d9488;   
   --primary-shadow-color: rgba(20, 184, 166, 0.4);
 
-  --secondary-color: #94a3b8;         /* Gray 400 */
+  --secondary-color: #94a3b8;       
   --secondary-text-color: #ffffff;
 }
   
@@ -41,6 +41,11 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: var(--primary-color);
+}
+
+.brand-name__link__text {
+  color: var(--primary-color); /* Menggunakan warna utama yang sudah didefinisikan */
 }
 
 .skip-link {
@@ -385,14 +390,19 @@ header {
   text-align: center;
   font-size: 2.5rem;
   padding-block: 50px 40px;
+  color: #fff;
 }
 
 /* LOGIN, REGISTER PAGE */
 .register-form-container,
 .login-form-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 5px;
   max-width: 400px;
   height: 100%;
   margin-inline: auto;
+  margin-block-start: 20px; /* Menambahkan jarak dengan header */
 }
 
 .register__title,
@@ -420,25 +430,25 @@ header {
 /* END OF LOGIN, REGISTER PAGE */
 
 /* HOME PAGE */
-.reports-list__map__container,
-.reports-list__map {
+.stories-list__map__container,
+.stories-list__map {
   height: 400px;
 }
 
-.reports-list__container {
+.stories-list__container {
   min-height: 400px;
 }
 
-.reports-list__map__container,
-.reports-list__container {
+.stories-list__map__container,
+.stories-list__container {
   position: relative;
 }
 
-.reports-list__map__container {
+.stories-list__map__container {
   background-color: darkgray;
 }
 
-.reports-list {
+.stories-list {
   display: grid;
   grid-template-columns: repeat(1, minmax(300px, 1fr));
   gap: 20px 15px;
@@ -449,7 +459,7 @@ header {
   text-align: center;
 }
 
-.report-item {
+.story-item {
   border-radius: 12px;
   border: 1px solid #d4d4d4;
   background-color: #ffffff;
@@ -511,8 +521,8 @@ header {
 
 /* END OF HOME PAGE */
 
-/* NEW REPORT FORM */
-.new-report__header {
+/* NEW STORY FORM */
+.new-story__header {
   padding-block: 70px;
   background-color: #d9770626;
   background-image: url('../public/images/background.png');
@@ -522,12 +532,14 @@ header {
   text-align: center;
 }
 
-.new-report__header__title {
+.new-story__header__title {
   margin-block-end: 16px;
 }
 
 /* form */
 .new-form__container {
+  background-color: #ffffff;
+  border-radius: 8px;
   max-width: 800px;
   margin-inline: auto;
 }
@@ -543,8 +555,6 @@ header {
   margin-block-start: 8px;
 }
 
-.new-form__title__title,
-.new-form__damage-level__title,
 .new-form__description__title,
 .new-form__documentations__title,
 .new-form__location__title {
@@ -554,8 +564,6 @@ header {
   font-size: 1rem;
 }
 
-.new-form__title__container > :not([hidden]) ~ :not([hidden]),
-.new-form__damage-level__container > :not([hidden]) ~ :not([hidden]),
 .new-form__description__container > :not([hidden]) ~ :not([hidden]),
 .new-form__documentations__container > :not([hidden]) ~ :not([hidden]),
 .new-form__location__container > :not([hidden]) ~ :not([hidden]) {
@@ -650,23 +658,54 @@ header {
   display: flex;
   gap: 10px;
 }
-/* END OF NEW REPORT FORM */
+/* END OF NEW STORY FORM */
 
+/* FOOTER */
 /* FOOTER */
 footer {
   margin-block-start: 50px;
+  background-color: #fff; /* Latar belakang footer gelap */
+  color: var(--primary-color);
+  padding-block: 40px;
 }
 
 .footer-content {
-  padding-block: 40px;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-item {
+  text-align: center;
+  padding: 10px 20px;
+  flex: 1;
+}
+
+.footer-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.footer-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-item a:hover {
+  color: var(--primary-color); /* Menggunakan warna utama saat hover */
 }
 
 .copyright {
   text-align: center;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  font-style: italic;
 }

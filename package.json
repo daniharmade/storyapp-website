@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "leaflet": "^1.9.4",
+    "sweetalert2": "^11.21.0",
     "tiny-slider": "^2.9.4"
   }
 }

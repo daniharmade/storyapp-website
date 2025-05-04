@@ -12,21 +12,21 @@ export default class RegisterPage {
 
           <form id="register-form" class="register-form">
             <div class="form-control">
-              <label for="name-input" class="register-form__name-title">Nama lengkap</label>
+              <label for="name-input" class="register-form__name-title">Nama lengkap <span style="color: red">*</span></label>
 
               <div class="register-form__title-container">
                 <input id="name-input" type="text" name="name" placeholder="Masukkan nama lengkap Anda">
               </div>
             </div>
             <div class="form-control">
-              <label for="email-input" class="register-form__email-title">Email</label>
+              <label for="email-input" class="register-form__email-title">Email <span style="color: red">*</span></label>
 
               <div class="register-form__title-container">
-                <input id="email-input" type="email" name="email" placeholder="Contoh: nama@email.com">
+                <input id="email-input" type="email" name="email" placeholder="Contoh: nama@example.com">
               </div>
             </div>
             <div class="form-control">
-              <label for="password-input" class="register-form__password-title">Password</label>
+              <label for="password-input" class="register-form__password-title">Password <span style="color: red">*</span></label>
 
               <div class="register-form__title-container">
                 <input id="password-input" type="password" name="password" placeholder="Masukkan password baru">
@@ -36,7 +36,7 @@ export default class RegisterPage {
               <div id="submit-button-container">
                 <button class="btn" type="submit">Daftar akun</button>
               </div>
-              <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Masuk</a></p>
+              <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Login<b></b></a></p>
             </div>
           </form>
         </div>

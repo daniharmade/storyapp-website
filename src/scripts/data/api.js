@@ -8,7 +8,7 @@ const ENDPOINTS = {
   MY_USER_INFO: `${BASE_URL}/users/me`,
 
   // stories
-  REPORT_LIST: `${BASE_URL}/stories`,
+  STORY_LIST: `${BASE_URL}/stories`,
   STORE_NEW_STORY: `${BASE_URL}/stories`,
 };
 
@@ -61,7 +61,7 @@ export async function getMyUserInfo() {
 export async function getAllStories() {
   const accessToken = getAccessToken();
 
-  const fetchResponse = await fetch(ENDPOINTS.REPORT_LIST, {
+  const fetchResponse = await fetch(ENDPOINTS.STORY_LIST, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   const json = await fetchResponse.json();
@@ -72,31 +72,35 @@ export async function getAllStories() {
   };
 }
 
-export async function storeNewReport({
-  title,
-  damageLevel,
+export async function storeNewStory({
   description,
-  evidenceImages,
-  latitude,
-  longitude,
+  photo,
+  lat,
+  lon,
 }) {
   const accessToken = getAccessToken();
 
   const formData = new FormData();
-  formData.set('title', title);
-  formData.set('damageLevel', damageLevel);
   formData.set('description', description);
-  formData.set('latitude', latitude);
-  formData.set('longitude', longitude);
-  evidenceImages.forEach((evidenceImage) => {
-    formData.append('evidenceImages', evidenceImage);
-  });
+
+  if (lat) formData.set('lat', lat);
+  if (lon) formData.set('lon', lon);
+
+  // Ensure 'photo' is a single file or multiple, if expected
+  if (Array.isArray(photo)) {
+    photo.forEach((image) => {
+      formData.append('photo', image);  // If the API expects multiple images, keep it like this
+    });
+  } else {
+    formData.append('photo', photo); // If it's a single image, use this approach
+  }
 
   const fetchResponse = await fetch(ENDPOINTS.STORE_NEW_STORY, {
     method: 'POST',
     headers: { Authorization: `Bearer ${accessToken}` },
     body: formData,
   });
+
   const json = await fetchResponse.json();
 
   return {

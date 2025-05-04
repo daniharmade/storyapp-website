@@ -7,6 +7,7 @@ import {
 import { setupSkipToContent, transitionHelper } from '../utils';
 import { getAccessToken, getLogout } from '../utils/auth';
 import { routes } from '../routes/routes';
+import Swal from 'sweetalert2';
 
 export default class App {
   #content;
@@ -67,14 +68,25 @@ export default class App {
     const logoutButton = document.getElementById('logout-button');
     logoutButton.addEventListener('click', (event) => {
       event.preventDefault();
-
-      if (confirm('Apakah Anda yakin ingin keluar?')) {
-        getLogout();
-
-        // Redirect
-        location.hash = '/login';
-      }
-    });
+    
+      Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: 'Anda akan logout dari akun ini.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, logout',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          getLogout();
+    
+          // Redirect
+          location.hash = '/login';
+        }
+      });
+    });    
   }
 
   async renderPage() {

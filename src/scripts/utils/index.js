@@ -11,28 +11,6 @@ export function showFormattedDate(date, locale = 'en-US', options = {}) {
   });
 }
 
-export async function createCarousel(containerElement, options = {}) {
-  const { tns } = await import('tiny-slider');
-
-  return tns({
-    container: containerElement,
-    mouseDrag: true,
-    swipeAngle: false,
-    speed: 600,
-
-    nav: true,
-    navPosition: 'bottom',
-
-    autoplay: false,
-    controls: false,
-
-    ...options,
-  });
-}
-
-/**
- * Ref: https://stackoverflow.com/questions/18650168/convert-blob-to-base64
- */
 export function convertBlobToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -42,9 +20,6 @@ export function convertBlobToBase64(file) {
   });
 }
 
-/**
- * Ref: https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
- */
 export function convertBase64ToBlob(base64Data, contentType = '', sliceSize = 512) {
   const byteCharacters = atob(base64Data);
   const byteArrays = [];
