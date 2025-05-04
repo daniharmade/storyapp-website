@@ -14,7 +14,7 @@ export function generateLoaderAbsoluteTemplate() {
 
 export function generateMainNavigationListTemplate() {
   return `
-    <li><a id="report-list-button" class="report-list-button" href="#/">Daftar Story</a></li>
+    <li><a id="story-list-button" class="story-list-button" href="#/">Daftar Story</a></li>
   `;
 }
 
@@ -29,14 +29,14 @@ export function generateUnauthenticatedNavigationListTemplate() {
 export function generateAuthenticatedNavigationListTemplate() {
   return `
     <li id="push-notification-tools" class="push-notification-tools"></li>
-    <li><a id="new-report-button" class="btn new-report-button" href="#/new">Buat Cerita <i class="fas fa-plus"></i></a></li>
+    <li><a id="new-story-button" class="btn new-story-button" href="#/new">Buat Cerita <i class="fas fa-plus"></i></a></li>
     <li><a id="logout-button" class="logout-button" href="#/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
   `;
 }
 
 export function generateStoriesListEmptyTemplate() {
   return `
-    <div id="reports-list-empty" class="reports-list__empty">
+    <div id="stories-list-empty" class="stories-list__empty">
       <h2>Tidak ada cerita yang tersedia</h2>
       <p>Saat ini, tidak ada cerita yang dipublikasi.</p>
     </div>
@@ -45,8 +45,8 @@ export function generateStoriesListEmptyTemplate() {
 
 export function generateStoriesListErrorTemplate(message) {
   return `
-    <div id="reports-list-error" class="reports-list__error">
-      <h2>Terjadi kesalahan pengambilan data</h2>
+    <div id="stories-list-error" class="stories-list__error">
+      <h2>Terjadi kesalahan saat pengambilan data</h2>
       <p>${message ? message : 'Gunakan jaringan lain atau laporkan error ini.'}</p>
     </div>
   `;
@@ -62,27 +62,27 @@ export function generateStoryItemTemplate({
 }) {
   return `
     <div tabindex="0" class="report-item" data-reportid="${id}">
-      <img class="report-item__image" src="${evidenceImages[0]}" alt="Gambar Storty Form ${userName}">
-      <div class="report-item__body">
-        <div class="report-item__main">
-          <div class="report-item__more-info">
-            <div class="report-item__createdat">
+      <img class="story-item__image" src="${evidenceImages[0]}" alt="Image Form ${userName}">
+      <div class="story-item__body">
+        <div class="story-item__main">
+          <div class="story-item__more-info">
+            <div class="story-item__createdat">
               <i class="fas fa-calendar-alt"></i> ${showFormattedDate(createdAt, 'id-ID')}
             </div>
-            <div class="report-item__location">
+            <div class="story-item__location">
               <i class="fas fa-map"></i> ${Object.values(location)}
             </div>
           </div>
         </div>
-        <div id="report-description" class="report-item__description">
+        <div id="story-description" class="story-item__description">
           ${description}
         </div>
-        <div class="report-item__more-info">
-          <div class="report-item__author">
+        <div class="story-item__more-info">
+          <div class="story-item__author">
             Diunggah oleh: ${userName}
           </div>
         </div>
-<a class="btn report-item__read-more" href="javascript:void(0)" onclick="alert('Fitur ini akan segera hadir!')">
+<a class="btn story-item__read-more" href="javascript:void(0)" onclick="alert('Fitur ini akan segera hadir!')">
   Selengkapnya <i class="fas fa-arrow-right"></i>
 </a>
       </div>

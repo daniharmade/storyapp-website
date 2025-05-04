@@ -6,15 +6,15 @@
 }
 
 :root {
-  --primary-color: #d97706;
+  --primary-color: #14b8a6;           /* Teal 500 */
   --primary-text-color: #ffffff;
-  --primary-hover-color: #b66200;
-  --primary-shadow-color: #d9770699;
+  --primary-hover-color: #0d9488;     /* Teal 600 */
+  --primary-shadow-color: rgba(20, 184, 166, 0.4);
 
-  --secondary-color: #6c757d;
+  --secondary-color: #94a3b8;         /* Gray 400 */
   --secondary-text-color: #ffffff;
 }
-
+  
 @keyframes full-slide-from-right {
   from {
     transform: translateX(100%);
@@ -441,8 +441,8 @@ header {
   gap: 20px 15px;
 }
 
-.reports-list__empty,
-.reports-list__error {
+.stories-list__empty,
+.stories-list__error {
   text-align: center;
 }
 
@@ -453,7 +453,7 @@ header {
   overflow: hidden;
 }
 
-.report-item__image {
+.story-item__image {
   display: block;
   width: 100%;
   height: 250px;
@@ -461,20 +461,20 @@ header {
   object-position: center;
 }
 
-.report-item__body {
+.story-item__body {
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
 }
 
-.report-item__main {
+.story-item__main {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
 }
 
-.report-item__more-info {
+.story-item__more-info {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -482,23 +482,23 @@ header {
   color: #5d5d5d;
 }
 
-.report-item__createdat,
-.report-item__location,
-.report-item__author {
+.story-item__createdat,
+.story-item__location,
+.story-item__author {
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
   gap: 8px;
 }
 
-.report-item__description {
+.story-item__description {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.report-item__read-more {
+.story-item__read-more {
   justify-self: start;
   display: inline-flex;
   gap: 5px;
@@ -507,267 +507,6 @@ header {
 }
 
 /* END OF HOME PAGE */
-
-
-/* DETAIL PAGE */
-.report-detail__container,
-.report-detail {
-  position: relative;
-  min-height: 80vh;
-}
-
-.report-detail__header {
-  padding-block: 80px;
-  min-height: 600px;
-  background-image: url('../public/images/orange-background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  text-align: center;
-}
-
-.report-detail__title {
-  font-size: 2.5rem;
-  color: #09090b;
-}
-
-.report-detail__more-info {
-  margin: 30px;
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  gap: 20px;
-
-  font-size: 1.5rem;
-  color: #5d5d5d;
-}
-
-.report-detail__more-info__inline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-}
-
-.report-detail__createdat,
-.report-detail__location__latitude,
-.report-detail__location__longitude,
-.report-detail__author {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.report-detail__createdat::after,
-.report-detail__location__latitude::after,
-.report-detail__location__longitude::after,
-.report-detail__author::after {
-  content: attr(data-value);
-  color: #09090b;
-}
-
-.report-detail__damage-level {
-  margin: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-}
-
-.report-detail__damage-level__minor,
-.report-detail__damage-level__moderate,
-.report-detail__damage-level__severe {
-  padding: 8px 20px;
-  border-radius: 9999px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.report-detail__damage-level__minor {
-  background-color: #2563eb33;
-  color: #2563eb;
-}
-
-.report-detail__damage-level__moderate {
-  background-color: #d9770633;
-  color: #d97706;
-}
-
-.report-detail__damage-level__severe {
-  background-color: #e11d4833;
-  color: #e11d48;
-}
-
-.report-detail__images__container {
-  width: 90%;
-  margin-inline: auto;
-  position: relative;
-  inset-block-start: -100px;
-
-  scale: 1.1;
-}
-
-.report-detail__images {
-  height: 300px;
-}
-
-.report-detail__image {
-  width: 100%;
-  height: 100%;
-  background-color: #5d5d5d;
-  border-radius: 20px;
-
-  object-fit: contain;
-  object-position: center;
-}
-
-/* Tiny Slider */
-.tns-nav {
-  margin-block: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.tns-nav > [aria-controls] {
-  min-height: auto;
-  min-width: auto;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--secondary-color);
-  border: 0;
-}
-
-.tns-nav > .tns-nav-active[aria-controls] {
-  background-color: var(--primary-color);
-}
-/* Tiny Slider */
-
-.report-detail__body {
-  margin-block: 40px;
-  margin-inline: auto;
-  max-width: 800px;
-
-  display: grid;
-  grid-template-columns: 1fr;
-
-  gap: 30px;
-}
-
-.report-detail__description__title,
-.report-detail__map__title,
-.report-detail__comments-form__title {
-  margin-block-end: 12px;
-  font-size: 1.5rem;
-}
-
-.report-detail__map__container,
-.report-detail__map {
-  height: 500px;
-  position: relative;
-}
-
-.report-detail__map__container {
-  background-color: darkgray;
-}
-
-.report-detail__body__actions__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.report-detail__actions__buttons {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Report comments section */
-.report-detail__comments__container {
-  max-width: 800px;
-  margin-block: 30px;
-  margin-inline: auto;
-}
-
-/* Report comments form */
-.report-detail__comments-form__container {
-  margin-block: 20px 40px;
-}
-
-.report-detail__comments-form__form textarea {
-  min-height: 150px;
-}
-
-.report-detail__comments-form__form button {
-  margin-block-start: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.report-detail__comments-form__loader {
-  animation: rotation 1s linear infinite;
-}
-
-/* Report comments list */
-.report-detail__comments-list__container,
-.report-detail__comments-list {
-  min-height: 150px;
-  position: relative;
-}
-
-.report-detail__comments-list {
-  margin-block: 30px;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-}
-
-.report-detail__comments-list__empty {
-  text-align: center;
-}
-
-.report-detail__comment-item {
-  display: flex;
-  gap: 20px;
-}
-
-.report-detail__comment-item__photo {
-  aspect-ratio: 1 / 1;
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-
-  align-self: start;
-}
-
-.report-detail__comment-item__body {
-  flex-grow: 1;
-}
-
-.report-detail__comment-item__body__more-info {
-  margin-block-end: 8px;
-  display: flex;
-  gap: 12px;
-
-  color: #555;
-}
-
-.report-detail__comment-item__body__author {
-  font-weight: 600;
-  color: #09090b;
-}
-
-.report-detail__comment-item__body__text {
-  color: #5d5d5d;
-}
-/* Report comments section */
-/* END OF DETAIL PAGE */
 
 /* NEW REPORT FORM */
 .new-report__header {
