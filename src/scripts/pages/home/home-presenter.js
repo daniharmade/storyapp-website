@@ -1,3 +1,5 @@
+import Database from '../../data/database';
+
 export default class HomePresenter {
   #view;
   #model;
@@ -18,12 +20,20 @@ export default class HomePresenter {
         return;
       }
 
-      this.#view.populateStoriesList(response.message, response.listStory); 
+      // Cek status simpan untuk setiap story
+      const storiesWithSaveStatus = await Promise.all(
+        response.listStory.map(async (story) => {
+          const isSaved = await Database.getReportById(story.id);
+          return { ...story, isSaved: !!isSaved };
+        })
+      );
+
+      this.#view.populateStoriesList(response.message, storiesWithSaveStatus);
     } catch (error) {
       console.error('initialGalleryAndMap: error:', error);
       this.#view.populateStoriesListError(error.message);
     } finally {
       this.#view.hideLoading();
     }
-  }  
+  }
 }

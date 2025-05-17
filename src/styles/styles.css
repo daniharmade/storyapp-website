@@ -660,6 +660,112 @@ header {
 }
 /* END OF NEW STORY FORM */
 
+/* BOOKMARK PAGE */
+/* Styling untuk halaman bookmark */
+.bookmark-item {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-text-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: 0 2px 4px var(--primary-shadow-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bookmark-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--primary-shadow-color);
+}
+
+.bookmark-item__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.bookmark-item__body {
+  flex: 1;
+}
+
+.bookmark-item__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookmark-item__more-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9em;
+  color: var(--secondary-color);
+}
+
+.bookmark-item__createdat,
+.bookmark-item__location,
+.bookmark-item__author {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bookmark-item__description {
+  margin: 10px 0;
+  line-height: 1.5;
+  color: #333;
+}
+
+.bookmark-item__author {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reports-list__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Gaya untuk container utama dan judul */
+.section-title {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Gaya untuk pesan kosong atau error */
+.reports-list__empty,
+.reports-list__error {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--primary-text-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  color: #333;
+}
+
+.reports-list__empty h2,
+.reports-list__error h2 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.reports-list__empty p,
+.reports-list__error p {
+  color: var(--secondary-color);
+}
+
+/* END BOOKMARK PAGE */
+
 /* FOOTER */
 /* FOOTER */
 footer {

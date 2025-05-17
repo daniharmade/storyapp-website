@@ -14,7 +14,8 @@ export function generateLoaderAbsoluteTemplate() {
 
 export function generateMainNavigationListTemplate() {
   return `
-    <li>Haloo, Selamat Datang!</li>
+    <li><a id="report-list-button" class="report-list-button" href="#/">Daftar Laporan</a></li>
+    <li><a id="bookmark-button" class="bookmark-button" href="#/bookmark">Laporan Tersimpan</a></li>
   `;
 }
 
@@ -43,9 +44,27 @@ export function generateStoriesListEmptyTemplate() {
   `;
 }
 
+export function generateReportsListEmptyTemplate() {
+  return `
+    <div id="reports-list-empty" class="reports-list__empty">
+      <h2>Tidak ada laporan tersimpan</h2>
+      <p>Saat ini, tidak ada laporan yang disimpan.</p>
+    </div>
+  `;
+}
+
 export function generateStoriesListErrorTemplate(message) {
   return `
     <div id="stories-list-error" class="stories-list__error">
+      <h2>Terjadi kesalahan saat pengambilan data</h2>
+      <p>${message ? message : 'Gunakan jaringan lain atau laporkan error ini.'}</p>
+    </div>
+  `;
+}
+
+export function generateReportsListErrorTemplate(message) {
+  return `
+    <div id="reports-list-error" class="reports-list__error">
       <h2>Terjadi kesalahan saat pengambilan data</h2>
       <p>${message ? message : 'Gunakan jaringan lain atau laporkan error ini.'}</p>
     </div>
@@ -59,7 +78,12 @@ export function generateStoryItemTemplate({
   userName,
   createdAt,
   location,
+  isSaved,
 }) {
+  const saveButton = isSaved
+    ? generateRemoveReportButtonTemplate()
+    : generateSaveReportButtonTemplate();
+
   return `
     <div tabindex="0" class="story-item" data-reportid="${id}">
       <img class="story-item__image" src="${evidenceImages[0]}" alt="Image Form ${userName}">
@@ -82,9 +106,43 @@ export function generateStoryItemTemplate({
             <i class="fas fa-user"></i> ${userName}
           </div>
         </div>
-        <a class="btn story-item__read-more" href="javascript:void(0)" onclick="alert('Fitur ini akan segera hadir!')">
-          Selengkapnya <i class="fas fa-arrow-right"></i>
-        </a>
+        <div id="save-actions-container">${saveButton}</div>
+      </div>
+    </div>
+  `;
+}
+
+export function generateReportItemTemplate({
+  id,
+  description,
+  photoUrl,
+  createdAt,
+  lat,
+  lon,
+  name,
+}) {
+  return `
+    <div tabindex="0" class="bookmark-item" data-reportid="${id}">
+      <img class="bookmark-item__image" src="${photoUrl}" alt="Image from ${name}">
+      <div class="bookmark-item__body">
+        <div class="bookmark-item__main">
+          <div class="bookmark-item__more-info">
+            <div class="bookmark-item__createdat">
+              <i class="fas fa-calendar-alt"></i> ${showFormattedDate(createdAt, 'id-ID')}
+            </div>
+            <div class="bookmark-item__location">
+              <i class="fas fa-map-marker-alt"></i> ${lat && lon ? `${lat}, ${lon}` : 'Lokasi tidak tersedia'}
+            </div>
+          </div>
+        </div>
+        <div id="report-description" class="bookmark-item__description">
+          ${description}
+        </div>
+        <div class="bookmark-item__more-info">
+          <div class="bookmark-item__author">
+            <i class="fas fa-user"></i> ${name}
+          </div>
+        </div>
       </div>
     </div>
   `;
@@ -102,6 +160,22 @@ export function generateUnsubscribeButtonTemplate() {
   return `
     <button id="unsubscribe-button" class="btn unsubscribe-button">
       Unsubscribe <i class="fas fa-bell-slash"></i>
+    </button>
+  `;
+}
+
+export function generateSaveReportButtonTemplate() {
+  return `
+    <button id="report-detail-save" class="btn btn-transparent" title="Simpan laporan">
+      <i class="far fa-bookmark"></i> Simpan
+    </button>
+  `;
+}
+
+export function generateRemoveReportButtonTemplate() {
+  return `
+    <button id="report-detail-remove" class="btn btn-transparent" title="Hapus laporan">
+      <i class="fas fa-bookmark"></i> Hapus
     </button>
   `;
 }
