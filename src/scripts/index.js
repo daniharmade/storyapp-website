@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   await registerServiceWorker();
   await requestNotificationPermission(); // ✅ Tambahkan ini
 
+    // for demonstration purpose-only
+  console.log('Berhasil mendaftarkan service worker.');
+
   window.addEventListener('hashchange', async () => {
     await app.renderPage();
     Camera.stopAllStreams();
