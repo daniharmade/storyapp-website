@@ -68,3 +68,35 @@ export function transitionHelper({ skipTransition = false, updateDOM }) {
 
   return document.startViewTransition(updateDOM);
 }
+
+export function isServiceWorkerAvailable() {
+  return 'serviceWorker' in navigator;
+}
+ 
+export async function registerServiceWorker() {
+  if (!isServiceWorkerAvailable()) {
+    console.log('Service Worker API unsupported');
+    return;
+  }
+ 
+  try {
+    const registration = await navigator.serviceWorker.register('/sw.bundle.js');
+    console.log('Service worker telah terpasang', registration);
+  } catch (error) {
+    console.log('Failed to install service worker:', error);
+  }
+}
+
+export async function requestNotificationPermission() {
+  if (!('Notification' in window)) {
+    console.warn('Browser tidak mendukung notifikasi.');
+    return;
+  }
+
+  const permission = await Notification.requestPermission();
+  if (permission === 'granted') {
+    console.log('Notifikasi diizinkan');
+  } else {
+    console.warn('Notifikasi tidak diizinkan atau ditolak');
+  }
+}

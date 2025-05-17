@@ -3,6 +3,7 @@ import '../styles/styles.css';
 import '../styles/responsives.css';
 import 'tiny-slider/dist/tiny-slider.css';
 import 'leaflet/dist/leaflet.css';
+import { registerServiceWorker, requestNotificationPermission } from './utils';
 
 import App from './pages/app';
 import Camera from './utils/camera';
@@ -16,9 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   await app.renderPage();
 
+  await registerServiceWorker();
+  await requestNotificationPermission(); // ✅ Tambahkan ini
+
   window.addEventListener('hashchange', async () => {
     await app.renderPage();
-
     Camera.stopAllStreams();
   });
 });

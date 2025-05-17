@@ -1,3 +1,5 @@
+import { isNotificationGranted, isCurrentPushSubscriptionAvailable } from '../../utils/notification-helper';
+
 export default class NewPresenter {
   #view;
   #model;
@@ -18,7 +20,7 @@ export default class NewPresenter {
     }
   }
 
-  async postNewStory({description, photo, lat, lon }) {
+  async postNewStory({ description, photo, lat, lon }) {
     this.#view.showSubmitLoadingButton();
     try {
       const data = {
@@ -33,6 +35,32 @@ export default class NewPresenter {
         console.error('postNewStory: response:', response);
         this.#view.storeFailed(response.message);
         return;
+      }
+
+      // Cek apakah notifikasi diizinkan dan langganan push TIDAK aktif
+      const isNotificationAllowed = isNotificationGranted();
+      const isSubscribed = await isCurrentPushSubscriptionAvailable();
+
+      if (isNotificationAllowed && !isSubscribed && 'serviceWorker' in navigator && 'PushManager' in window) {
+        try {
+          const registration = await navigator.serviceWorker.ready;
+          if (registration.active) {
+            registration.active.postMessage({
+              type: 'story_created',
+              description: description,
+            });
+            console.log('Sent story_created message to service worker');
+          } else {
+            console.warn('Service worker not active');
+            alert(`Story berhasil dibuat: ${description}`);
+          }
+        } catch (error) {
+          console.error('Error sending message to service worker:', error);
+          alert(`Story berhasil dibuat: ${description}`);
+        }
+      } else {
+        // Fallback ke alert jika notifikasi tidak tersedia atau pengguna sudah berlangganan
+        alert(`Story berhasil dibuat: ${description}`);
       }
 
       this.#view.storeSuccessfully(response.message, response.data);
