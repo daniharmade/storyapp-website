@@ -3,11 +3,11 @@ import { registerRoute } from 'workbox-routing';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { NetworkFirst, CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { BASE_URL } from './config';
- 
+
 // Do precaching
 const manifest = self.__WB_MANIFEST;
 precacheAndRoute(manifest);
- 
+
 // Runtime caching
 registerRoute(
   ({ url }) => {
@@ -67,44 +67,52 @@ registerRoute(
 
 self.addEventListener('push', (event) => {
   console.log('Service worker pushing...');
+  let notificationData = {
+    title: 'CityCare Notification',
+    options: {
+      body: 'You have a new notification!',
+      icon: '/images/icons/icon-x144.png',
+      badge: '/images/icons/icon-x144.png',
+    },
+  };
 
-  async function chainPromise() {
-    if (event.data) {
-      try {
-        const data = event.data.json();
-        if (data.type === 'story_created') {
-          notificationData = {
-            title: 'Story berhasil dibuat',
-            options: {
-              body: `Anda telah membuat story baru dengan deskripsi: ${data.description}`,
-            },
-          };
-        }
-      } catch (error) {
-        console.error('Error parsing push event data:', error);
+  if (event.data) {
+    try {
+      const data = event.data.json();
+      if (data.type === 'story_created') {
+        notificationData = {
+          title: 'Story berhasil dibuat',
+          options: {
+            body: `Anda telah membuat story baru dengan deskripsi: ${data.description}`,
+            icon: '/images/icons/icon-x144.png',
+            badge: '/images/icons/icon-x144.png',
+          },
+        };
       }
+    } catch (error) {
+      console.error('Error parsing push event data:', error);
     }
-
-    await self.registration.showNotification(notificationData.title, notificationData.options);
   }
 
-  event.waitUntil(chainPromise());
+  event.waitUntil(self.registration.showNotification(notificationData.title, notificationData.options));
 });
 
-// Menangani pesan dari postMessage
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(clients.openWindow('/#/'));
+});
+
 self.addEventListener('message', (event) => {
   console.log('Service worker received message:', event.data);
-
   if (event.data && event.data.type === 'story_created') {
     const notificationData = {
       title: 'Story berhasil dibuat',
       options: {
         body: `Anda telah membuat story baru dengan deskripsi: ${event.data.description}`,
+        icon: '/images/icons/icon-x144.png',
+        badge: '/images/icons/icon-x144.png',
       },
     };
-
-    self.registration.showNotification(notificationData.title, notificationData.options).catch((error) => {
-      console.error('Error showing notification:', error);
-    });
+    event.waitUntil(self.registration.showNotification(notificationData.title, notificationData.options));
   }
 });
